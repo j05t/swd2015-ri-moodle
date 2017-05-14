@@ -1,0 +1,162 @@
+* { 
+	-moz-box-sizing: border-box; 
+	-webkit-box-sizing: border-box; 
+	box-sizing: border-box; 
+}
+
+html, body {
+	height: 100%;
+	margin:0;
+	padding:0;
+	font-family:Arial, Helvetica, sans-serif;
+	background: #eee;
+	overflow: auto;
+	overflow-x: hidden;
+}
+
+h1, h2, h3, label {
+	margin:0;
+	padding: 0;
+}
+
+table {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+    border-collapse: collapse;
+}
+	th, td {
+		text-align: left;
+		padding: 10px;
+	}
+
+	tr:nth-child(even) {
+		background-color: #f2f2f2
+	}
+
+	th {
+		background-color: #4CAF50;
+		color: white;
+	}
+
+main {
+	position: relative;
+	max-width: 960px;
+	min-height: 100%;
+	margin: 0 auto;
+	padding:0;
+	background: white;
+	/*border-left:1px solid #ccc;
+	border-right:1px solid #ccc;*/
+}
+
+header {
+	padding: 10px;
+}
+header > img {
+	height: 60px;
+}
+	header > aside {
+		float: right;
+		margin: 0 10px 0 0;
+	}
+	header > aside > p {
+		font-size: 0.9em;
+	}
+
+#content {
+	padding: 20px 20px 70px 20px;
+}
+
+footer {
+	position: fixed;
+	width:100%;
+	bottom: 0;
+}
+	footer > .container {
+		position: relative;
+		max-width: 940px;
+		margin: 0 auto;
+	}
+	footer > .container > aside {
+		float: left;
+		margin: 15px 0 0 10px;
+	}
+	footer > .container > aside > img {
+		height: 2em;
+	}
+	footer > .container > aside > label {
+		float: right;
+		font-size: 0.9em;
+		margin: 0.6em 0 0 10px;
+	}
+
+nav {
+	text-align: right;
+	background: white;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+	ul > li {
+		display: inline-block;
+	}
+	ul > li a {
+		display: block;
+		width: 40px;
+		margin: 10px 20px 10px 0;
+	}
+
+
+@media (max-width: 576px) {
+	html, body {
+		background: white;
+	}
+
+	header > aside {
+		display: none;
+	}
+}
+
+.hide {
+	display: none;
+}
+
+#login {
+	max-width: 400px;
+	margin: 20px auto 0;
+	padding: 10px 20px 20px;
+	text-align: right;
+}
+
+#login > label,
+#login > input {
+	display: block;
+	margin: 10px 0 0;
+	text-align: left;
+}
+	#login > label {
+		font-size: 0.8em;
+		font-weight: bold;
+	}
+	#login > input {
+		font-size: 1.2em;
+		padding: 10px;
+		width: 100%;
+		border: 1px solid #ccc;
+	}
+	#login > button {
+		margin: 10px 0 0;
+		border: 1px solid #ccc;
+		background: white;
+		font-size: 1.2em;
+		padding: 10px;
+	}
+
+#login-error {
+	margin-top:10px;
+	font-weight: bold;
+}
