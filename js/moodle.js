@@ -123,11 +123,71 @@ var moodle = {
 			moodle.disableLoading();
 		
 			if(state == responseState.ERROR) {
-				console.err('Couldn\'t receive user data.');
+				console.err('Couldn\'t receive data.');
 				return;
 			}
 
 			moodle.showTable(data[0], ['id', 'username', 'fullname']);
+		});
+	},
+	
+	rooms: function() {
+		moodle.enableLoading('Loading online rooms ..');
+
+		var url = urls.api + '?moodlewsrestformat=json&wsfunction=core_course_get_contents'
+			+'&courseid=1198' 
+			+'&wstoken=' + core.session.token;
+
+		core.getJSON(url, function(state, data) {
+			moodle.disableLoading();
+		
+			if(state == responseState.ERROR) {
+				console.err('Couldn\'t receive data.');
+				return;
+			}
+
+			var div = document.createElement('div');
+			div.innerHTML = data[0].summary;
+
+			var wrapper = document.createElement('div');
+			wrapper.classList.add('rooms');
+
+			var childs = div.getElementsByTagName('ul');
+
+			for(var i = 0; i < childs.length; i++) {
+				var child = childs[i];
+				var previousElement = child.previousElementSibling;
+				var text = previousElement.innerText.trim();
+
+				var h2 = document.createElement('h2');
+				h2.innerText = text;
+				h2.onclick = function() {
+					this.classList.toggle('expanded')
+				};
+				wrapper.appendChild(h2);
+
+				var ul = document.createElement('ul');
+				wrapper.appendChild(ul);
+
+				var links = child.getElementsByTagName('a');
+
+				for(var j = 0; j < links.length; j++) {
+					var li = document.createElement('li');
+					ul.appendChild(li);
+
+					var link = links[j];
+					var a = document.createElement('a');
+					a.href = link.href;
+					a.innerText = link.innerText.trim();
+					a.target = '_blank';
+
+					li.appendChild(a);
+				}
+			}
+
+			var content = document.getElementById('content');
+			content.innerHTML = '';
+			content.appendChild(wrapper);
 		});
 	}
 };
