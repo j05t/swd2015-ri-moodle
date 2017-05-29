@@ -1,48 +1,48 @@
 var site = {
-	init: function() {
-		if(moodle.isAuthenticated()) {
-			core.hide('login');
-			core.show('navigation');
-			site.home();
-		}
-		else {
-			site.login();
-		}		
-	},
-	home: function() {
-		moodle.enableLoading('Benutzerdaten werden geladen ..');
+    init: function () {
+        if (moodle.isAuthenticated()) {
+            core.hide('login');
+            core.show('navigation');
+            site.home();
+        }
+        else {
+            site.login();
+        }
+    },
+    home: function () {
+        moodle.enableLoading('Benutzerdaten werden geladen ..');
 
-		var url = urls.api + '?moodlewsrestformat=json&wsfunction=core_user_get_users_by_field' 
-			+'&wstoken=' + core.session.token 
-			+'&field=username&values[0]=' + core.session.username;
+        var url = urls.api + '?moodlewsrestformat=json&wsfunction=core_user_get_users_by_field'
+            + '&wstoken=' + core.session.token
+            + '&field=username&values[0]=' + core.session.username;
 
-		core.getJSON(url, function(state, data) {
-			moodle.disableLoading();
-		
-			if(state == responseState.ERROR) {
-				console.err('Couldn\'t receive user data.');
-				return;
-			}
+        core.getJSON(url, function (state, data) {
+            moodle.disableLoading();
 
-			var user = data[0];
+            if (state == responseState.ERROR) {
+                console.err('Couldn\'t receive user data.');
+                return;
+            }
 
-			console.log(user);
-			core.setText('displayname', user.fullname);
+            var user = data[0];
 
-			moodle.showTable(user, ['id', 'username', 'fullname']);
-		});
-	},
+            console.log(user);
+            core.setText('displayname', user.fullname);
 
-	login: function() {
-		core.session.removeItem('token');
-		core.show('login');
-	},
+            moodle.showTable(user, ['id', 'username', 'fullname']);
+        });
+    },
 
-	logout: function(e) {
-		e.preventDefault();
-		core.session.removeItem('token');
-		core.reload();
-	}
+    login: function () {
+        core.session.removeItem('token');
+        core.show('login');
+    },
+
+    logout: function (e) {
+        e.preventDefault();
+        core.session.removeItem('token');
+        core.reload();
+    }
 };
 
 site.init();

@@ -1,20 +1,20 @@
 <!doctype html>
 <html lang="de">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moodle Mobile</title>
-		<link rel="stylesheet" href="css/base.css" type="text/css" />
-		<script src="js/core.js" defer></script>
-		<script src="js/moodle.js" defer></script>
-  </head>
-  <body>
-		<main>
-      <header>
+    <link rel="stylesheet" href="css/base.css" type="text/css"/>
+    <script src="js/core.js" defer></script>
+    <script src="js/moodle.js" defer></script>
+</head>
+<body>
+<main>
+    <header>
         <img src="img/logo.svg"/>
-      </header>
-			
-      <div id="login" class="hide">
+    </header>
+
+    <div id="login" class="hide">
         <label>Username:</label>
         <input type="text" placeholder="Enter Username" id="username" value="" required>
 
@@ -23,25 +23,27 @@
 
         <button type="button" onclick="moodle.authenticate()">Login</button>
         <label id="login-error"></label>
-      </div>  
+    </div>
 
-      <div id="content"></div>
-		</main>
+    <div id="content"></div>
+</main>
 
-    <footer>
-      <div class="container">
+<footer>
+    <div class="container">
         <aside id="loading" class="hide">
-          <img src="img/ripple.svg"/>
-          <label id="state-text"></label>
+            <img src="img/ripple.svg"/>
+            <label id="state-text"></label>
         </aside>
         <nav id="navigation">
-          <ul>
-            <li><a href="#" onclick="moodle.logout(event);"><img src="img/exit.svg"/></a></li>
-            <li><a href="#" onclick="moodle.rooms(event);"><img src="img/skype.svg"/></a></li>
-            <li><a href="#" onclick="moodle.home(event);"><img src="img/home.svg"/></a></li>
-          </ul>        
+            <ul>
+                <li><a href="#" onclick="moodle.logout(event);"><img src="img/exit.svg"/></a></li>
+                <li><a href="#" onclick="moodle.rooms(event);"><img src="img/skype.svg"/></a></li>
+                <!-- todo: attribute author http://www.flaticon.com/free-icon/to-do-list_1560 -->
+                <li><a href="#" onclick="moodle.assignments(event);"><img src="img/assignments.svg"/></a></li>
+                <li><a href="#" onclick="moodle.home(event);"><img src="img/home.svg"/></a></li>
+            </ul>
         </nav>
-      </div>
-    </footer>
-  </body>
+    </div>
+</footer>
+</body>
 </html>
